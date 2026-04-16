@@ -11,30 +11,22 @@ import LoginPage from './components/Login'
 import SignUp from './components/SignUp'
 import InstructorLayout from './pages/InstructorLayout'
 import HomeInstructor from './components/Instructor/Home'
-// import InstructorLogin from './components/InstructorLogin'
 import InstructorDashboard from './pages/InstructorDashboard'
 import AddCources from './pages/AddCourse'
 import DashbordLayout from './components/Instructor/DashbordLayout'
 import ProtectedRoute from './components/Auth/Protected'
 import MyProfile from './pages/MyProfile'
 import ViewCourse from './pages/ViewCourse'
-
 import ViewCourses from './components/Instructor/ViewCourses'
 import EditCourse from './components/Instructor/EditCourse'
-
 function App() {
-
-
   return (
-
-    <div className=' w-full h-screen bg-black  '>
+    <div className='w-full h-screen bg-black'>
       <BrowserRouter>
-
 
         <Routes>
 
-
-          {/*  Normal Website Layout */}
+          {/* Normal Website Layout */}
           <Route
             element={
               <>
@@ -51,35 +43,32 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
           </Route>
 
-
+          {/* Instructor Layout */}
           <Route path="/instructor" element={<InstructorLayout />}>
             <Route index element={<HomeInstructor />} />
           </Route>
 
-          <Route path="/instructor" element={<InstructorDashboard />} >
+          {/* Instructor Dashboard (FIXED — duplicate route removed) */}
+          <Route path="/instructor/dashboard" element={<InstructorDashboard />}>
+
             <Route path='dashboard' element={<ProtectedRoute><DashbordLayout /></ProtectedRoute>} />
+
             <Route path="MyProfile" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
+
             <Route path="courses">
-              <Route index element={ <ProtectedRoute> <ViewCourses /> </ProtectedRoute>
-                }
-              />
+              <Route index element={<ProtectedRoute><ViewCourses /></ProtectedRoute>} />
               <Route path="add" element={<ProtectedRoute><AddCources /></ProtectedRoute>} />
               <Route path="edit/:courseId" element={<ProtectedRoute><EditCourse /></ProtectedRoute>} />
               <Route path='view/:id' element={<ProtectedRoute><ViewCourse /></ProtectedRoute>} />
-
             </Route>
-
             <Route path="manage-student" element={<div className='text-white'>Manage Student Page</div>} />
 
           </Route>
 
         </Routes>
 
-
       </BrowserRouter>
-
     </div>
-
   )
 }
 

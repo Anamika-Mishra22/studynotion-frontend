@@ -4,57 +4,73 @@ import { fetchPublishedCourses } from "../../redux/course/courseSlice";
 
 const DashbordLayout = () => {
   const dispatch = useDispatch();
-  const { publishedCourses, loading } = useSelector(
+
+  const { publishedCourses = [], loading } = useSelector(
     (state) => state.courses
   );
-  console.log("Published Courses in Dashboard:", publishedCourses);
 
   useEffect(() => {
     dispatch(fetchPublishedCourses());
   }, [dispatch]);
 
-  if (loading) return <p className="text-white p-6">Loading...</p>;
+  if (loading)
+    return (
+      <p className="text-white p-6 text-center">Loading...</p>
+    );
 
   return (
-    <div className="p-6 bg-black min-h-screen text-white">
-      <h1 className="text-2xl font-bold mb-6">
+    <div className="p-4 md:p-6 bg-black min-h-screen text-white">
+
+      <h1 className="text-xl md:text-2xl font-bold mb-6">
         Explore Courses
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
-        {publishedCourses.map((course) => (
-          <div
-            key={course._id}
-            className="bg-[#0f172a] rounded-xl overflow-hidden"
-          >
-            <img
-              src={course.thumbnail}
-              alt={course.title}
-              className="h-40 w-full object-cover"
-            />
+      {/* EMPTY STATE */}
+      {publishedCourses.length === 0 ? (
+        <p className="text-gray-400 text-center">
+          No courses available
+        </p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div className="p-4 space-y-2">
-              <h2 className="font-semibold text-lg">
-                {course.title}
-              </h2>
+          {publishedCourses.map((course) => (
+            <div
+              key={course._id}
+              className="bg-[#0f172a] rounded-xl overflow-hidden hover:scale-[1.02] transition"
+            >
 
-              <p className="text-sm text-gray-400">
-                {course.category}
-              </p>
+              <img
+                src={course.thumbnail}
+                alt={course.title}
+                className="h-40 w-full object-cover"
+              />
 
-              <p className="text-sm">
-                👨‍🏫 {course.instructor?.name}
-              </p>
+              <div className="p-4 space-y-2">
 
-              <button className="mt-3 w-full bg-blue-600 py-2 rounded">
-                View Course
-              </button>
+                <h2 className="font-semibold text-base md:text-lg">
+                  {course.title}
+                </h2>
+
+                <p className="text-sm text-gray-400">
+                  {course.category}
+                </p>
+
+                <p className="text-sm">
+                  👨‍🏫 {course.instructor?.name || "Instructor"}
+                </p>
+
+                <button className="mt-3 w-full bg-blue-600 py-2 rounded hover:bg-blue-700 transition">
+                  View Course
+                </button>
+
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+
+        </div>
+      )}
     </div>
   );
 };
 
-export default DashbordLayout ;
+export default DashbordLayout;
