@@ -19,7 +19,7 @@ const Login = () => {
     console.log("Login Data Submitted:", formData);
 
     try{
-      const response = await axios.post("http://localhost:5000/api/users/login", formData);
+      const response = await axios.post("https://studynotion-backend-rsv4.onrender.com/api/users/login", formData);
       console.log("User logged in successfully:", response.data);
       if(response.data.token){
         localStorage.setItem("token", response.data.token);

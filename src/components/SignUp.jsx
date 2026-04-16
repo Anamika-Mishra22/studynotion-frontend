@@ -17,7 +17,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
     try {
-      const response = await axios.post("http://localhost:5000/api/users/signup", formData);
+      const response = await axios.post("https://studynotion-backend-rsv4.onrender.com/api/users/signup", formData);
       console.log("User registered successfully:", response.data);
     } catch (error) {
       console.error("Error registering user:", error.response ? error.response.data : error.message);
