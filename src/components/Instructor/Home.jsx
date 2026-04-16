@@ -2,7 +2,7 @@ import React from 'react'
 import { useOutletContext } from "react-router-dom"
 
 import Login from './Login'
-import SignUp from './Signup'
+import SignUp from './SignUp'
 import img from '../../assets/Images/signup2.webp'
 const Home = () => {
  const { isSignup, setIsSignup } = useOutletContext()
