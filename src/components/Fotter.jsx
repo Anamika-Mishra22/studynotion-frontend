@@ -3,7 +3,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import logo from '../assets/Logo/Logo-full-light.png'
+import logo from '../assets/Logo/Logo-Full-Light.png'
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 
